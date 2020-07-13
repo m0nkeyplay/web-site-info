@@ -1,0 +1,17 @@
+#   Leave this
+#   Script will not read comment lines
+#   Copy this file, or make your own based on the pattern below
+#
+#   urlFile,projectName,httpProxy,httpsProxy,timeoutTime
+#       urlFile = text file list of URLs
+#       projectName = We are gonna drop this in a folder, give it a name pref with no spaces, but we will deal if you want them
+#       httpProxy = if you are using a proxy, put it here,otherwise leave blank
+#       httpsProxy = see above
+#       timeOutTime = how long to wait for an intial resonse
+# 
+#   Example:
+#   With Proxy  
+#testList.txt,defaultSites,http://httpProxy:PORT,https://httpsProxy:PORT,7
+#
+#   Without Proxy
+testList.txt,defaultSites, , ,7

@@ -7,7 +7,16 @@ Results are available in csv and HTML.
 
 Use the defaultConfig.txt as a model for your query and the testList.txt as a model for the link list.
 
-wsi.py in action:
+*usage* `./wsi.py -c configFile.txt`
+
+web site info requires selenium and Firefox with gecko drivers to take the screenshots
+
+https://pypi.org/project/selenium/
+
+https://github.com/mozilla/geckodriver/releases
+
+
+wsi.py in action `./wsi.py -c defaultConfig.txt`:
 
 ![alt text](examples/wsi-commandline.png)
 

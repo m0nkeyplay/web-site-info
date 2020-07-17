@@ -189,7 +189,7 @@ def get_links(pageText,fName,folder):
 def take_screenshot(url,finalUrl,aProxy,folder):
     options = Options()
     options.headless = True
-    selenuimProxy = aProxy
+    selenuimProxy = aProxy.replace('http','')
     fileName = name_clean(url)
     fileName = fileName+'.png'
     saveFile = folder+'/screenshots/'+fileName
@@ -337,15 +337,22 @@ if __name__ == '__main__':
                     print("We can't find the list of URLs. Please update the config file and try again.")
                     exit()
                 projectDirectory = project_dir(setup[1].strip())
-                os.mkdir(projectDirectory+'/screenshots')
-                os.mkdir(projectDirectory+'/links')
                 outputcsv = projectDirectory+'/'+'results.csv'
                 outputHTML = projectDirectory+'/'+'results.html'
                 timeoutTime = str(setup[4].strip())
                 proxies = {}
                 proxies['http'] = setup[2].strip()
                 proxies['https'] = setup[3].strip()
-                ip = requests.get('https://checkip.amazonaws.com',proxies=proxies,timeout=10).text.strip()
+                try: 
+                    checkIp = requests.get('https://api.myip.com',proxies=proxies,timeout=10)
+                    data = checkIp.json()
+                    ip = data["ip"]
+                except:
+                    print("Unable to get the self ip checker.\nCheck the timeout as well as the proxy is working.")
+                    exit()
+                #   We got things that will work - let's start making things
+                os.mkdir(projectDirectory+'/screenshots')
+                os.mkdir(projectDirectory+'/links')
                 check_em(urlFile,outputcsv,outputHTML,proxies,timeoutTime,str(ip),projectDirectory)
         ourSettings.close()
         print("\n\n*************************")
